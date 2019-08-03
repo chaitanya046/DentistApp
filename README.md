@@ -25,7 +25,7 @@ The clinic has two doctors, a General Dentist & a Pediatric Dentist. Both have t
 - Add Button-> Adds patient to data grid
 - Save Button-> Saves patients to XML file.
 - Display Button-> Display all patients in data grid.
-- LINQ Query ->Search Button and Textbox->...will determine the query
+- LINQ Query ->Search Button and Textbox->...will determine the query (Proposed - filter on child customers)
 
 ##  Functions
 After filling patient's information, the child customer or adult customer is created according the age rule.
@@ -37,3 +37,7 @@ Do we really need this functions?
 - Update Button-> Reads XML file, fetches all patients list. After selecting a patient sets related patient's info to left panel. Enables updating patient's information.
 - Delete Button-> Reads XML file, fetches all patients list. Enables deleting a patient after selecting it.
 
+## Important Requirements
+1. All the text boxes should be binded for error checks
+2. Combobox items must be fetched from an enum. 
+3. Business logic remains in diffrent project.
