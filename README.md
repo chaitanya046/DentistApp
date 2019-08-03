@@ -1,5 +1,5 @@
 # DentistApp
-
+![DentistApp](Raw/ico_dentned.png?raw=true)
 ## Description
 This project is built to reflect what a dental clinic's appointments and patients management system would be like.
 
