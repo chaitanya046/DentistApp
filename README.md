@@ -11,8 +11,8 @@ The clinic has two doctors, a General Dentist & a Pediatric Dentist. Both have t
 
 ## WPF User Interface
 - Current Day+1 (Show Tomorrows date)
-- Available Appointment Slots ->Combobox-> Start from 9AM to 4PM with 1 hor intervals. Total 8 slots.
-- Gender ->Combobox-> Male, Femal, Other
+- Available Appointment Slots ->Combobox-> Starts from 9AM to 4PM with 1 hour intervals. Total 8 slots.
+- Gender ->Combobox-> Male, Female, Other
 - Age ->Textbox-> 
       ->Age <=15 Create Child Customer
       ->Age >15  Create Adult Customer
