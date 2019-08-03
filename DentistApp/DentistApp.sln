@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentistApp", "DentistApp\DentistApp.csproj", "{E09C9000-6AC5-4388-9CF0-F34A01B4A77C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{30BD8B0E-4443-45D6-B1FB-69512D0E45F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E09C9000-6AC5-4388-9CF0-F34A01B4A77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E09C9000-6AC5-4388-9CF0-F34A01B4A77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E09C9000-6AC5-4388-9CF0-F34A01B4A77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30BD8B0E-4443-45D6-B1FB-69512D0E45F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30BD8B0E-4443-45D6-B1FB-69512D0E45F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30BD8B0E-4443-45D6-B1FB-69512D0E45F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30BD8B0E-4443-45D6-B1FB-69512D0E45F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

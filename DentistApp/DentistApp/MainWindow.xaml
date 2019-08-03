@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DentistApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="677" Width="1071">
+    <Grid Margin="0,0,2,9">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="Age: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
+                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="65,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" GotFocus="Reset_click" 
+                         ToolTip="{Binding ElementName=ageBox, Path=(Validation.Errors)[0].ErrorContent}">
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="Credit card #: " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.803,-1.519"/>
+                <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" Margin="18,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="Client Type: " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <ComboBox x:Name="clientCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="clientCombo_SelectionChanged"/>
+            </StackPanel>
+
+        </StackPanel>
+
     </Grid>
 </Window>
