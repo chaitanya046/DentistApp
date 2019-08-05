@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DentistApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="677" Width="1071">
+        Title="MainWindow" Height="447" Width="1071">
     <Grid Margin="0,0,2,9">
         <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Appointment: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
+                <ComboBox x:Name="appointmentComboBox" Width="158" Height="26" Margin="10,38,0,0" VerticalAlignment="Top"/>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" >
                 <Label Content="Age: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="65,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" GotFocus="Reset_click" 
-                         ToolTip="{Binding ElementName=ageBox, Path=(Validation.Errors)[0].ErrorContent}">
+                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="65,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
                 </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
@@ -19,11 +22,54 @@
                 <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" Margin="18,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Client Type: " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <ComboBox x:Name="clientCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="clientCombo_SelectionChanged"/>
+                <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <ComboBox x:Name="genderCombo" HorizontalAlignment="Left" Margin="49,0,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.639,0.515"/>
             </StackPanel>
-
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="Medicals:    " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <ComboBox x:Name="medCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="CT - XRAY:            " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <RadioButton x:Name="radioYes" Content="Yes"/>
+                <RadioButton x:Name="radioNo" Content="No"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="Treatment:  " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="Payment By:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <ComboBox x:Name="payCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="Contact: " HorizontalAlignment="Left" Margin="10,4,0,-34" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712" Height="25"/>
+                <TextBox x:Name="contactBox" HorizontalAlignment="Left" Height="23" Margin="46,6,0,-30" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
         </StackPanel>
-
+        <DataGrid Name ="myGrid" HorizontalAlignment="Left" Height="150" Margin="310,38,0,0" VerticalAlignment="Top" Width="712" ItemsSource="{Binding Path=Applist}" AutoGenerateColumns="False">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Time"/>
+                <DataGridTextColumn Header="Gender"/>
+                <DataGridTextColumn Header="Age"/>
+                <DataGridTextColumn Header="Medical Conditions"/>
+                <DataGridTextColumn Header="CT-XRAY"/>
+                <DataGridTextColumn Header="Treatment"/>
+                <DataGridTextColumn Header="Payment Method"/>
+                <DataGridTextColumn Header="Contact #"/>
+                <DataGridTextColumn Header="Credit Card"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="registerButton" Content="Register" HorizontalAlignment="Left" Margin="360,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="446,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="displayButton" Content="Display" HorizontalAlignment="Left" Margin="533,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Search by Age: " HorizontalAlignment="Left" Margin="360,269,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
+        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="23" Margin="453,268,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
+        </TextBox>
+        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Margin="582,270,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
