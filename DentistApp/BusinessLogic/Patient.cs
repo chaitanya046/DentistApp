@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic
+namespace DentistApp
 {
     public enum TreatmentType
     {
@@ -22,7 +22,7 @@ namespace BusinessLogic
         OHIP,
         Other
     }
-    class Patient : IPatient
+    public class Patient : IPatient
     {
         public int Age { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string CreditCard { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
