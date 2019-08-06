@@ -10,11 +10,11 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Height="55">
                 <Label Content="Appointment: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-                <ComboBox x:Name="appointmentComboBox" Width="158" Height="26" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="appointmentCombo" Width="158" Height="26" Margin="10,5,0,0" VerticalAlignment="Top"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
                 <Label Content="Age: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="65,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
+                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="64,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
                 </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
@@ -26,9 +26,9 @@
                 <ComboBox x:Name="medCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="CT - XRAY:            " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <RadioButton x:Name="radioYes" Content="Yes"/>
-                <RadioButton x:Name="radioNo" Content="No"/>
+                <Label Content="CT - XRAY:            " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <RadioButton x:Name="radioYes" Content="Yes" Margin="10,10,0,0"/>
+                <RadioButton x:Name="radioNo" Content="No" Margin="10,10,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
                 <Label Content="Treatment:  " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>

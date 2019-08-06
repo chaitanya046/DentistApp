@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DentistApp
 {
-    class Appointment
+    public class Appointment
     {
     }
 }
