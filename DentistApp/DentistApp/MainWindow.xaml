@@ -8,18 +8,14 @@
         Title="MainWindow" Height="447" Width="1071">
     <Grid Margin="0,0,2,9">
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Appointment: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-                <ComboBox x:Name="appointmentComboBox" Width="158" Height="26" Margin="10,38,0,0" VerticalAlignment="Top"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" >
-                <Label Content="Age: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="65,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
-                </TextBox>
+            <StackPanel Orientation="Horizontal" Height="55">
+                <Label Content="Appointment: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
+                <ComboBox x:Name="appointmentComboBox" Width="158" Height="26" Margin="10,5,0,0" VerticalAlignment="Top"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Credit card #: " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.803,-1.519"/>
-                <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" Margin="18,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                <Label Content="Age: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
+                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="65,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
+                </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
                 <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
@@ -36,15 +32,19 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
                 <Label Content="Treatment:  " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Payment By:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <ComboBox x:Name="payCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120"/>
+                <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Width="120"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
                 <Label Content="Contact: " HorizontalAlignment="Left" Margin="10,4,0,-34" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712" Height="25"/>
                 <TextBox x:Name="contactBox" HorizontalAlignment="Left" Height="23" Margin="46,6,0,-30" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label Content="Payment By:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
+                <ComboBox x:Name="payCombo" HorizontalAlignment="Left" Margin="29,5,0,0" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="35">
+                <Label x:Name="creditLabel" Content="Credit card #: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.803,-1.519"/>
+                <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" Margin="18,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
             </StackPanel>
         </StackPanel>
         <DataGrid Name ="myGrid" HorizontalAlignment="Left" Height="150" Margin="310,38,0,0" VerticalAlignment="Top" Width="712" ItemsSource="{Binding Path=Applist}" AutoGenerateColumns="False">

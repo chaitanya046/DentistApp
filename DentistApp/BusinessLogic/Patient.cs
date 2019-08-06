@@ -22,6 +22,12 @@ namespace DentistApp
         OHIP,
         Other
     }
+    public enum MedicalConditions
+    {
+        Diabetic = 0,
+        Hepatitic,
+    }
+
     public class Patient : IPatient
     {
         public int Age { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
