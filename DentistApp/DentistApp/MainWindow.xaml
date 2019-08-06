@@ -5,71 +5,115 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DentistApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="447" Width="1071">
-    <Grid Margin="0,0,2,9">
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal" Height="55">
-                <Label Content="Appointment: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-                <ComboBox x:Name="appointmentCombo" Width="158" Height="26" Margin="10,5,0,0" VerticalAlignment="Top"/>
+        Title="MainWindow" Height="600" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <local:ConvertRow x:Key="MyConverter"/>
+            <Style TargetType="Label">
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Text" Value=""/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Margin" Value="30,0,0,0"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="Margin" Value="30,0,0,0"/>
+            </Style>
+        </Grid.Resources>
+        <StackPanel Grid.Column="0" Orientation="Vertical" Background="Azure"   >
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label Content="Appointment Time" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <ComboBox x:Name="appointmentCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top"  />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label Content="Age:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label Content="Gender: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <ComboBox x:Name="genderCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top"  />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label Content="Medical Conditions: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <ComboBox x:Name="medCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Age: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" Margin="64,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
-                </TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Gender:" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <ComboBox x:Name="genderCombo" HorizontalAlignment="Left" Margin="49,0,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.639,0.515"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Medicals:    " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <ComboBox x:Name="medCombo" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="120"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="CT - XRAY:            " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <RadioButton x:Name="radioYes" Content="Yes" Margin="10,10,0,0"/>
+                <Label Content="CT-XRAY: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <RadioButton x:Name="radioYes" Content="Yes" Margin="30,10,0,0"/>
                 <RadioButton x:Name="radioNo" Content="No" Margin="10,10,0,0"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Treatment:  " HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Width="120"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label Content="Treatment: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Contact: " HorizontalAlignment="Left" Margin="10,4,0,-34" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712" Height="25"/>
-                <TextBox x:Name="contactBox" HorizontalAlignment="Left" Height="23" Margin="46,6,0,-30" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label Content="Contact Number:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <TextBox x:Name="contactBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label Content="Payment By:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-4.237,-1.096"/>
-                <ComboBox x:Name="payCombo" HorizontalAlignment="Left" Margin="29,5,0,0" VerticalAlignment="Top" Width="120"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label Content="Payment By: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <ComboBox x:Name="payCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35">
-                <Label x:Name="creditLabel" Content="Credit card #: " HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.803,-1.519"/>
-                <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" Margin="18,5,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Label x:Name="creditLabel" Content="Credit Card" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+                <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,5">
+                <Button x:Name="btnRegister" Content="Register" Width="100" HorizontalAlignment="Left" Margin="0,5,0,5" />
+                <Button x:Name="btnDisplay" Content="Display" Width="100" HorizontalAlignment="Left" Margin="10,5,0,5" />
+                <Button x:Name="btnSave" Content="Save" Width="100" HorizontalAlignment="Left" Margin="15,5,0,5" />
+
             </StackPanel>
         </StackPanel>
-        <DataGrid Name ="myGrid" HorizontalAlignment="Left" Height="150" Margin="310,38,0,0" VerticalAlignment="Top" Width="712" ItemsSource="{Binding Path=Applist}" AutoGenerateColumns="False">
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Time"/>
-                <DataGridTextColumn Header="Gender"/>
-                <DataGridTextColumn Header="Age"/>
-                <DataGridTextColumn Header="Medical Conditions"/>
-                <DataGridTextColumn Header="CT-XRAY"/>
-                <DataGridTextColumn Header="Treatment"/>
-                <DataGridTextColumn Header="Payment Method"/>
-                <DataGridTextColumn Header="Contact #"/>
-                <DataGridTextColumn Header="Credit Card"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="registerButton" Content="Register" HorizontalAlignment="Left" Margin="360,229,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="446,229,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="displayButton" Content="Display" HorizontalAlignment="Left" Margin="533,229,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Search by Age: " HorizontalAlignment="Left" Margin="360,269,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.068,1.712"/>
-        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="23" Margin="453,268,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120">
-        </TextBox>
-        <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" Margin="582,270,0,0" VerticalAlignment="Top" Width="75"/>
+        <Grid Grid.Column="1" Background="Azure">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label   x:Name="lblCustomerList" Content="List of Customers" />
+            <TextBlock Grid.Row="1" Grid.RowSpan="2" x:Name="blockCustomerList" TextWrapping="Wrap"  Background="Azure"/>
+            <DataGrid x:Name="MyGrid" AutoGenerateColumns="false" ItemsSource="{Binding Path=DisplayAppointments}"  Width="580"
+                  Grid.Row="1" Grid.RowSpan="5">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{Binding Path=., Converter={StaticResource MyConverter}}" />
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                  
+                    <DataGridTextColumn Header="Time"/>
+                    <DataGridTextColumn Header="Gender"/>
+                    <DataGridTextColumn Header="Age"/>
+                    <DataGridTextColumn Header="Medical Conditions"/>
+                    <DataGridTextColumn Header="CT-XRAY"/>
+                    <DataGridTextColumn Header="Treatment"/>
+                    <DataGridTextColumn Header="Payment Method"/>
+                    <DataGridTextColumn Header="Contact #"/>
+                    <DataGridTextColumn Header="Credit Card"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="6" Orientation="Vertical" Background="Azure"   >
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                    <Button Name="btnSearch" Content="Search by name"  Margin="5"/>
+                    <TextBox Name="txtSearch" Text=""  Width="200" HorizontalAlignment="Left" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+
+
+
+        </Grid>
+
     </Grid>
 </Window>

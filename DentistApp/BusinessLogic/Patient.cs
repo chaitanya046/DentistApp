@@ -24,7 +24,8 @@ namespace DentistApp
     }
     public enum MedicalConditions
     {
-        Diabetic = 0,
+        None=0,
+        Diabetic,
         Hepatitic,
     }
 
