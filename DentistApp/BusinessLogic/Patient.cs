@@ -28,11 +28,40 @@ namespace DentistApp
         Diabetic,
         Hepatitic,
     }
-
+    public delegate void DelegateForPatient();
     public class Patient : IPatient
     {
-        public int Age { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string CreditCard { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string ContactNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private int age;
+        private string contactNumber;
+        public string creditCard;
+        private DelegateForPatient patientDelegate;
+        private string gender;
+
+        public int Age { get => age; set => age = value; }
+        public string CreditCard { get => creditCard; set => creditCard =value;}
+        public string ContactNumber { get => contactNumber; set => contactNumber = value; }
+        public string Gender { get => gender; set => gender = value; }
+
+        public string ViewCreditCard { get => ConcealedCard(); }
+
+        private string ConcealedCard()
+        {
+            creditCard = creditCard.Insert(4, " ");
+            string creditCardOneSpace = creditCard.Insert(9, " ");
+            string creditCardTwoSpace = creditCardOneSpace.Insert(14, " ");
+            char[] passArray = creditCardTwoSpace.ToCharArray();
+            for (int i = 5; i < 9; i++)
+            {
+                passArray[i] = 'X';
+            }
+            for (int i = 10; i < 14; i++)
+            {
+                passArray[i] = 'X';
+            }
+            return new string(passArray);
+        }
+
+
+
     }
 }
