@@ -31,19 +31,21 @@ namespace DentistApp
             
 
             InitializeComponent();
-            
+            Applist = new ObservableCollection<Patient>();
             //Populating Appointment Combobox
             DateTime theTime = DateTime.Now;
             DateTime initTime = new DateTime(theTime.Year, theTime.Month, theTime.Day, 9, 0, 0);
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 9; i++)
             {
+                appointmentArray[i] = new Appointment();
                 appointmentArray[i].Time = initTime.ToString("HH:mm tt");
+                appointmentCombo.Items.Add(initTime.ToString("HH:mm tt"));
                 initTime = initTime.AddHours(1);
             }
-            foreach (Appointment apt in appointmentArray)
-            {
-                appointmentCombo.Items.Add(apt.Time);
-            }
+            //foreach (Appointment apt in appointmentArray)
+            //{
+            //    appointmentCombo.Items.Add(apt.Time);
+            //}
             //Populating Treatment Combobox
             string[] treatments = Enum.GetNames(typeof(TreatmentType));
             foreach (string name in treatments)
@@ -80,16 +82,19 @@ namespace DentistApp
             {
                 if (appointmentArray[slot].Patient == null)
                 {
-                   // appointmentArray[slot].Patient = CreateNewPatient(appointmentArray[slot].Time);
-              
+                    
+                    appointmentArray[slot].Patient = CreateNewPatient();
+                    appointmentArray[slot].Patient.Time = appointmentCombo.SelectedValue.ToString();
+                    appointmentArray[slot].Time = appointmentCombo.SelectedValue.ToString();
                 }
             }
-          
 
-            //if (appointmentArray[slot].Patient != null)
-            //{
-            //    Applist.Add(appointmentArray[slot].Patient);
-            //}
+
+            if (appointmentArray[slot].Patient != null)
+            {
+                Applist.Add(appointmentArray[slot].Patient);
+            }
+            MyGrid.ItemsSource = Applist;
 
         }
 
@@ -98,6 +103,26 @@ namespace DentistApp
             this.slot = appointmentCombo.SelectedIndex;
         }
 
-      
+        private Patient CreateNewPatient()
+        {
+          Patient patient  = null;
+            // determining patient type
+            if ((int.TryParse(ageBox.Text, out age)) && age <= 99 && age >= 2) {
+
+                
+                if (age <= 15)
+                {
+                    patient = new ChildPatient() { Age = age };
+                }
+                else { patient = new AdultPatient() {Age=age }; }
+
+            }
+           
+            ageBox.Text = "";
+            //creditBox.Text = "";
+            
+            return patient;
+        }
+
     }
 }

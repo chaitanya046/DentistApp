@@ -15,18 +15,18 @@ namespace DentistApp
         {
             if (value is Patient)
             {
-                if (((Patient)value).Age < 15)
+                if (((Patient)value).Age <=15)
                 {
                     return Brushes.Green;
                 }
                 else
                 {
-                    return Brushes.Black;
+                    return Brushes.Yellow;
                 }
             }
             else
             {
-                return Brushes.Black;
+                return Brushes.Red;
             }
         }
 

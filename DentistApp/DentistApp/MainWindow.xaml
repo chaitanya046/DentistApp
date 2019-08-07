@@ -83,8 +83,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label   x:Name="lblCustomerList" Content="List of Customers" />
-            <TextBlock Grid.Row="1" Grid.RowSpan="2" x:Name="blockCustomerList" TextWrapping="Wrap"  Background="Azure"/>
-            <DataGrid x:Name="MyGrid" AutoGenerateColumns="false" ItemsSource="{Binding Path=DisplayAppointments}"  Width="580"
+            
+            <DataGrid x:Name="MyGrid" AutoGenerateColumns="false" ItemsSource="{Binding Path=Applist}"  Width="580"
                   Grid.Row="1" Grid.RowSpan="5">
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
@@ -92,10 +92,10 @@
                     </Style>
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
-                  
-                    <DataGridTextColumn Header="Time"/>
+
+                    <DataGridTextColumn Header="Time" Binding="{Binding Time}"/>
                     <DataGridTextColumn Header="Gender"/>
-                    <DataGridTextColumn Header="Age"/>
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
                     <DataGridTextColumn Header="Medical Conditions"/>
                     <DataGridTextColumn Header="CT-XRAY"/>
                     <DataGridTextColumn Header="Treatment"/>

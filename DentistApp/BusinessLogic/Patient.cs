@@ -35,15 +35,17 @@ namespace BusinessLogic
         private string contactNumber;
         public string creditCard;
         private string gender;
+        private string time;
 
         public int Age { get => age; set => age = value; }
         public string CreditCard { get => creditCard; set => creditCard =value;}
         public string ContactNumber { get => contactNumber; set => contactNumber = value; }
         public string Gender { get => gender; set => gender = value; }
+        public string Time { get => time; set => time = value; }
 
-        
 
-     
+
+
 
         public abstract string CleanTeeth();
         
