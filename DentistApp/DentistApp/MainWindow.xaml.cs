@@ -98,7 +98,7 @@ namespace DentistApp
             {
                 Applist.Add(appointmentArray[slot].Patient);
             }
-            MyGrid.ItemsSource = Applist;
+            MyGrid.ItemsSource = Applist; 
 
         }
 
