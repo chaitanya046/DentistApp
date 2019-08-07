@@ -77,8 +77,8 @@ namespace DentistApp
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             AppointmentList appointmentList = new AppointmentList();
-            //bool flag = ValidateValues();
-            if (slot <= appointmentArray.Length /*&& flag == true*/)
+            bool flag = ValidateValues();
+            if (slot <= appointmentArray.Length && flag == true)
             {
                 if (appointmentArray[slot].Patient == null)
                 {
@@ -88,6 +88,10 @@ namespace DentistApp
                     appointmentArray[slot].Time = appointmentCombo.SelectedValue.ToString();
                 }
             }
+            else
+            {
+                MessageBox.Show("Wrong Input OR Slot Already taken");
+            }
 
 
             if (appointmentArray[slot].Patient != null)
@@ -96,6 +100,26 @@ namespace DentistApp
             }
             MyGrid.ItemsSource = Applist;
 
+        }
+
+        private bool ValidateValues()
+        {
+            //Age
+            bool ageFlag = true;
+            string ageString = string.Empty;
+            ageString = ageBox.Text;
+            if ((int.TryParse(ageString, out age) && age >= 5 && age <= 99))
+            {
+                ageBox.Foreground = Brushes.Black;
+                ageBox.Text = age.ToString();
+                ageFlag = true;
+            }
+            else
+            {
+                ageBox.Foreground = Brushes.Red;
+                ageFlag = false;
+            }
+            return ageFlag;
         }
 
         private void AppointmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)

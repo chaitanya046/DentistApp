@@ -34,7 +34,16 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Age:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  />
+                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  ToolTip="{Binding ElementName=ageBox, Path=(Validation.Errors)[0].ErrorContent}">
+                    <TextBox.Text>
+                        <Binding Path="AgeRule">
+                            <Binding.ValidationRules>
+                                <local:AgeRule Min="2" Max="99"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+
+                </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Gender: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
@@ -71,6 +80,7 @@
                 <Button x:Name="btnSave" Content="Save" Width="100" HorizontalAlignment="Left" Margin="15,5,0,5" />
 
             </StackPanel>
+            <Label x:Name="errorLabel" Content="" Width="Auto"/>
         </StackPanel>
         <Grid Grid.Column="1" Background="Azure">
             <Grid.RowDefinitions>
