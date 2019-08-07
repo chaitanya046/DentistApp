@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentistApp
+namespace BusinessLogic
 {
     public enum TreatmentType
     {
@@ -28,13 +28,12 @@ namespace DentistApp
         Diabetic,
         Hepatitic,
     }
-    public delegate void DelegateForPatient();
-    public class Patient : IPatient
+   
+    public abstract class Patient : IPatient
     {
         private int age;
         private string contactNumber;
         public string creditCard;
-        private DelegateForPatient patientDelegate;
         private string gender;
 
         public int Age { get => age; set => age = value; }
@@ -42,26 +41,23 @@ namespace DentistApp
         public string ContactNumber { get => contactNumber; set => contactNumber = value; }
         public string Gender { get => gender; set => gender = value; }
 
-        public string ViewCreditCard { get => ConcealedCard(); }
+        
 
-        private string ConcealedCard()
+     
+
+        public abstract string CleanTeeth();
+        
+        public static string ConcealCreditCard(string creditCard)
         {
-            creditCard = creditCard.Insert(4, " ");
-            string creditCardOneSpace = creditCard.Insert(9, " ");
-            string creditCardTwoSpace = creditCardOneSpace.Insert(14, " ");
-            char[] passArray = creditCardTwoSpace.ToCharArray();
-            for (int i = 5; i < 9; i++)
+            string concealedCard = string.Empty;
+            char[] charArr = creditCard.ToCharArray();
+            for (int i = 4; i < 12; i++)
             {
-                passArray[i] = 'X';
+                charArr[i] = 'X';
+                concealedCard = new string(charArr);
             }
-            for (int i = 10; i < 14; i++)
-            {
-                passArray[i] = 'X';
-            }
-            return new string(passArray);
+            return concealedCard;
         }
-
-
 
     }
 }

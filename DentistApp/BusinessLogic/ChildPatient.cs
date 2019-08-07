@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DentistApp
+namespace BusinessLogic
 {
-    class ChildPatient:Patient
+    public class ChildPatient:Patient
     {
+        public override string CleanTeeth()
+        {
+            return "Clean child teeth";
+        }
+
     }
 }
