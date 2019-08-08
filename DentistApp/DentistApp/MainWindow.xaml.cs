@@ -22,9 +22,10 @@ namespace DentistApp
         private int age = 0;
         private string creditCard = String.Empty;
         Appointment[] appointmentArray = new Appointment[9];
+        
         AppointmentList saveList = new AppointmentList();
         public ObservableCollection<Patient> Applist { get; set; } = null;
-
+        public MyPatient APatient { get; set; } = new MyPatient();
 
         public MainWindow()
         {
@@ -32,6 +33,7 @@ namespace DentistApp
 
             InitializeComponent();
             Applist = new ObservableCollection<Patient>();
+            DataContext = this;
             //Populating Appointment Combobox
             DateTime theTime = DateTime.Now;
             DateTime initTime = new DateTime(theTime.Year, theTime.Month, theTime.Day, 9, 0, 0);
@@ -76,7 +78,7 @@ namespace DentistApp
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            AppointmentList appointmentList = new AppointmentList();
+           
             bool flag = ValidateValues();
             if (slot <= appointmentArray.Length && flag == true)
             {
@@ -86,6 +88,7 @@ namespace DentistApp
                     appointmentArray[slot].Patient = CreateNewPatient();
                     appointmentArray[slot].Patient.Time = appointmentCombo.SelectedValue.ToString();
                     appointmentArray[slot].Time = appointmentCombo.SelectedValue.ToString();
+                    saveList.Add(appointmentArray[slot]);
                 }
             }
             else
@@ -148,5 +151,53 @@ namespace DentistApp
             return patient;
         }
 
+        private void BtnDisplay_Click(object sender, RoutedEventArgs e)
+        {
+            saveList.Clear();
+            ReadFromXML();
+            Applist.Clear();
+            for (int i = 0; i < saveList.Count(); i++)
+            {
+                Patient patient = saveList[i].Patient;
+                MyPatient newPatient = new MyPatient();
+                newPatient.Age = patient.Age;
+                newPatient.Time = patient.Time;
+                //newPatient.Gender
+                //string[] arrStr = patient.GetType().ToString().Split('.');
+                //string fullType = arrStr[arrStr.Length - 1];
+                //newPatient.Type = fullType.Substring(0, fullType.Length - 4);
+                Applist.Add(newPatient);
+            }
+            MyGrid.ItemsSource = Applist;
+        }
+        private void WriteToXML(AppointmentList myList)
+        {
+
+            XmlSerializer serializer = new XmlSerializer(typeof(AppointmentList));
+            TextWriter writer = new StreamWriter("appointments.xml");
+            serializer.Serialize(writer, myList);
+            writer.Close();
+        }
+        private void ReadFromXML()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(AppointmentList));
+            TextReader tr = new StreamReader("appointments.xml");
+            saveList = (AppointmentList)serializer.Deserialize(tr);
+            tr.Close();
+
+
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //saveList.Clear();
+            //foreach (Appointment apt in appointmentList)
+            //{
+            //    saveList.Add(patient);
+            //}
+            WriteToXML(saveList);
+            MessageBox.Show("Save Successful");
+            
+        }
     }
 }

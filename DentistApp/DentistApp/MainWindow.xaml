@@ -36,7 +36,7 @@
                 <Label Content="Age:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
                 <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  ToolTip="{Binding ElementName=ageBox, Path=(Validation.Errors)[0].ErrorContent}">
                     <TextBox.Text>
-                        <Binding Path="AgeRule">
+                        <Binding Path="Age">
                             <Binding.ValidationRules>
                                 <local:AgeRule Min="2" Max="99"/>
                             </Binding.ValidationRules>
@@ -76,8 +76,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,5">
                 <Button x:Name="btnRegister" Content="Register" Width="100" HorizontalAlignment="Left" Margin="0,5,0,5" Click="BtnRegister_Click" />
-                <Button x:Name="btnDisplay" Content="Display" Width="100" HorizontalAlignment="Left" Margin="10,5,0,5" />
-                <Button x:Name="btnSave" Content="Save" Width="100" HorizontalAlignment="Left" Margin="15,5,0,5" />
+                <Button x:Name="btnDisplay" Content="Display" Width="100" HorizontalAlignment="Left" Margin="10,5,0,5" Click="BtnDisplay_Click" />
+                <Button x:Name="btnSave" Content="Save" Width="100" HorizontalAlignment="Left" Margin="15,5,0,5" Click="BtnSave_Click" />
 
             </StackPanel>
             <Label x:Name="errorLabel" Content="" Width="Auto"/>

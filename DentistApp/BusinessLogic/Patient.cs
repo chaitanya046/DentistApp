@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DentistApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace BusinessLogic
 {
@@ -28,7 +30,9 @@ namespace BusinessLogic
         Diabetic,
         Hepatitic,
     }
-   
+    [XmlInclude(typeof(ChildPatient))]
+    [XmlInclude(typeof(AdultPatient))]
+    
     public abstract class Patient : IPatient
     {
         private int age;
