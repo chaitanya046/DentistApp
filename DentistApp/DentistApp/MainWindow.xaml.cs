@@ -26,7 +26,7 @@ namespace DentistApp
         private string treatment = String.Empty;
         private string creditCard = String.Empty;
         Appointment[] appointmentArray = new Appointment[9];
-        
+        private ObservableCollection<string> timeList { get; set; } = null;
         AppointmentList saveList = new AppointmentList();
         public ObservableCollection<Patient> Applist { get; set; } = null;
         public MyPatient APatient { get; set; } = new MyPatient();
@@ -37,6 +37,7 @@ namespace DentistApp
 
             InitializeComponent();
             Applist = new ObservableCollection<Patient>();
+            timeList = new ObservableCollection<string>();
             DataContext = this;
             //Populating Appointment Combobox
             DateTime theTime = DateTime.Now;
@@ -44,10 +45,13 @@ namespace DentistApp
             for (int i = 0; i < 9; i++)
             {
                 appointmentArray[i] = new Appointment();
-                appointmentArray[i].Time = initTime.ToString("HH:mm tt");
-                appointmentCombo.Items.Add(initTime.ToString("HH:mm tt"));
+                string timeofAppointment = initTime.ToString("HH:mm tt");
+                appointmentArray[i].Time = timeofAppointment;
                 initTime = initTime.AddHours(1);
+                timeList.Add(timeofAppointment);
             }
+            appointmentCombo.ItemsSource = timeList;
+
             string[] treatments = Enum.GetNames(typeof(TreatmentType));
             foreach (string name in treatments)
             {
@@ -92,8 +96,8 @@ namespace DentistApp
             {
                 Applist.Add(appointmentArray[slot].Patient);
             }
-            MyGrid.ItemsSource = Applist; 
-
+            MyGrid.ItemsSource = Applist;
+           
         }
 
         private bool ValidateValues()
@@ -246,6 +250,7 @@ namespace DentistApp
             //    saveList.Add(patient);
             //}
             WriteToXML(saveList);
+            timeList.RemoveAt(slot);
             MessageBox.Show("Save Successful");
             
         }
