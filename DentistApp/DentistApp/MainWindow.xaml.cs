@@ -111,7 +111,7 @@ namespace DentistApp
             bool ageFlag = true;
             string ageString = string.Empty;
             ageString = ageBox.Text;
-            if ((int.TryParse(ageString, out age) && age >= 5 && age <= 99))
+            if ((int.TryParse(ageString, out age) && age >= 2 && age <= 99))
             {
                 ageBox.Foreground = Brushes.Black;
                 ageBox.Text = age.ToString();
@@ -134,16 +134,14 @@ namespace DentistApp
         {
           Patient patient  = null;
             // determining patient type
-            if ((int.TryParse(ageBox.Text, out age)) && age <= 99 && age >= 2) {
-
-                
+             
                 if (age <= 15)
                 {
                     patient = new ChildPatient() { Age = age };
                 }
                 else { patient = new AdultPatient() {Age=age }; }
 
-            }
+            
            
             ageBox.Text = "";
             //creditBox.Text = "";
@@ -198,6 +196,14 @@ namespace DentistApp
             WriteToXML(saveList);
             MessageBox.Show("Save Successful");
             
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var query = from Appointment in Applist
+                        where Appointment.Age == int.Parse(txtSearch.Text)
+                        select Appointment;
+            MyGrid.ItemsSource = query;
         }
     }
 }

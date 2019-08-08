@@ -34,9 +34,10 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Age:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  ToolTip="{Binding ElementName=ageBox, Path=(Validation.Errors)[0].ErrorContent}">
+                <TextBox x:Name="ageBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  
+                         ToolTip="{Binding ElementName=ageBox, Path=(Validation.Errors)[0].ErrorContent}" >
                     <TextBox.Text>
-                        <Binding Path="Age">
+                        <Binding Path="APatient.Age">
                             <Binding.ValidationRules>
                                 <local:AgeRule Min="2" Max="99"/>
                             </Binding.ValidationRules>
@@ -116,7 +117,7 @@
             </DataGrid>
             <StackPanel Grid.Row="6" Orientation="Vertical" Background="Azure"   >
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                    <Button Name="btnSearch" Content="Search by name"  Margin="5"/>
+                    <Button Name="btnSearch" Content="Search by age"  Margin="5" Click="BtnSearch_Click"/>
                     <TextBox Name="txtSearch" Text=""  Width="200" HorizontalAlignment="Left" Margin="5"/>
                 </StackPanel>
             </StackPanel>
