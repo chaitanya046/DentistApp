@@ -20,6 +20,10 @@ namespace DentistApp
     {
         private int slot = 0;
         private int age = 0;
+        private string gender = String.Empty;
+        private string medicalCondition = String.Empty;
+        private bool ctXray = false;
+        private string treatment = String.Empty;
         private string creditCard = String.Empty;
         Appointment[] appointmentArray = new Appointment[9];
         
@@ -44,21 +48,10 @@ namespace DentistApp
                 appointmentCombo.Items.Add(initTime.ToString("HH:mm tt"));
                 initTime = initTime.AddHours(1);
             }
-            //foreach (Appointment apt in appointmentArray)
-            //{
-            //    appointmentCombo.Items.Add(apt.Time);
-            //}
-            //Populating Treatment Combobox
             string[] treatments = Enum.GetNames(typeof(TreatmentType));
             foreach (string name in treatments)
             {
                 treatmentCombo.Items.Add(name);
-            }
-            //Populating Payments Combobox
-            string[] payments = Enum.GetNames(typeof(PaymentType));
-            foreach (string name in payments)
-            {
-                payCombo.Items.Add(name);
             }
             //Populating Gender Combobox
             string[] gender = Enum.GetNames(typeof(GenderType));
@@ -72,8 +65,6 @@ namespace DentistApp
             {
                 medCombo.Items.Add(name);
             }
-            creditLabel.Visibility = Visibility.Hidden;
-            creditBox.Visibility = Visibility.Hidden;
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
@@ -122,7 +113,58 @@ namespace DentistApp
                 ageBox.Foreground = Brushes.Red;
                 ageFlag = false;
             }
-            return ageFlag;
+
+            //gender
+            bool genderFlag = true;
+            _ = (genderCombo.SelectedIndex == 0) ? gender = "Male" : (genderCombo.SelectedIndex == 1) ? gender = "Female" : gender = "Other";
+            if (genderCombo.SelectedIndex == -1)
+            {
+                genderFlag = false;
+            }
+
+            //Medical Conditions
+            bool medFlag = true;
+            if (medCombo.SelectedIndex == -1)
+            {
+                medFlag = false;
+            }
+            else
+            {
+                medicalCondition = medCombo.SelectedItem.ToString();
+            }
+
+            //CT
+            bool ctFlag = true;
+            _= (radioYes.IsChecked == true) ? ctXray = true : ctXray =  false;
+            if(ctXray == false)
+            {
+                _ = (radioNo.IsChecked == true) ? ctXray = false : ctFlag = false;
+            }
+
+            //treatment
+            bool treatFlag = true;
+            if (treatmentCombo.SelectedIndex == -1)
+            {
+                treatFlag = false;
+            }
+            else
+            {
+                treatment = treatmentCombo.SelectedItem.ToString();
+            }
+
+            //creditCard
+            bool creditFlag = true;
+            string creditCardRaw = creditBox.Text.Trim();
+            if (creditCardRaw.Length == 16)
+            {
+                creditCard = ConcealCreditCard(creditCardRaw);
+            }
+            else
+            {
+                creditBox.Foreground = Brushes.Red;
+                creditFlag = false;
+            }
+            return ageFlag && genderFlag && medFlag && ctFlag && treatFlag && creditFlag;
         }
 
         private void AppointmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -139,14 +181,20 @@ namespace DentistApp
                 
                 if (age <= 15)
                 {
-                    patient = new ChildPatient() { Age = age };
+                    patient = new ChildPatient() { Age = age, Gender = gender, MedicalCondition = medicalCondition, CtXray = ctXray, Treatment = treatment, CreditCard = creditCard };
                 }
-                else { patient = new AdultPatient() {Age=age }; }
+                else { patient = new AdultPatient() { Age = age, Gender = gender, MedicalCondition = medicalCondition, CtXray = ctXray, Treatment = treatment, CreditCard = creditCard }; }
 
             }
            
+            //clearing form
             ageBox.Text = "";
-            //creditBox.Text = "";
+            genderCombo.SelectedIndex = -1;
+            medCombo.SelectedIndex = -1;
+            treatmentCombo.SelectedIndex = -1;
+            creditBox.Text = "";
+            radioNo.IsChecked = false;
+            radioYes.IsChecked = false;
             
             return patient;
         }
@@ -162,7 +210,11 @@ namespace DentistApp
                 MyPatient newPatient = new MyPatient();
                 newPatient.Age = patient.Age;
                 newPatient.Time = patient.Time;
-                //newPatient.Gender
+                newPatient.Gender = patient.Gender;
+                newPatient.MedicalCondition = patient.MedicalCondition;
+                newPatient.CtXray = patient.CtXray;
+                newPatient.Treatment = patient.Treatment;
+                newPatient.CreditCard = patient.CreditCard;
                 //string[] arrStr = patient.GetType().ToString().Split('.');
                 //string fullType = arrStr[arrStr.Length - 1];
                 //newPatient.Type = fullType.Substring(0, fullType.Length - 4);
@@ -199,5 +251,18 @@ namespace DentistApp
             MessageBox.Show("Save Successful");
             
         }
+
+        private string ConcealCreditCard(string creditCard)
+        {
+            string concealedCard = string.Empty;
+            char[] charArr = creditCard.ToCharArray();
+            for (int i = 4; i < 12; i++)
+            {
+                charArr[i] = 'X';
+                concealedCard = new string(charArr);
+            }
+            return concealedCard;
+        }
+
     }
 }

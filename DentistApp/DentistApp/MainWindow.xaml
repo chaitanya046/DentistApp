@@ -63,14 +63,6 @@
                 <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                <Label Content="Contact Number:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <TextBox x:Name="contactBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"  />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                <Label Content="Payment By: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <ComboBox x:Name="payCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label x:Name="creditLabel" Content="Credit Card" HorizontalAlignment="Left"  VerticalAlignment="Top" />
                 <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" />
             </StackPanel>
@@ -104,14 +96,12 @@
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="Time" Binding="{Binding Time}"/>
-                    <DataGridTextColumn Header="Gender"/>
+                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
                     <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
-                    <DataGridTextColumn Header="Medical Conditions"/>
-                    <DataGridTextColumn Header="CT-XRAY"/>
-                    <DataGridTextColumn Header="Treatment"/>
-                    <DataGridTextColumn Header="Payment Method"/>
-                    <DataGridTextColumn Header="Contact #"/>
-                    <DataGridTextColumn Header="Credit Card"/>
+                    <DataGridTextColumn Header="Medical Conditions" Binding="{Binding MedicalCondition}"/>
+                    <DataGridTextColumn Header="CT-XRAY" Binding="{Binding CtXray}"/>
+                    <DataGridTextColumn Header="Treatment" Binding="{Binding Treatment}" />
+                    <DataGridTextColumn Header="Credit Card" Binding="{Binding CreditCard}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Grid.Row="6" Orientation="Vertical" Background="Azure"   >
