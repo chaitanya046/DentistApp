@@ -18,12 +18,6 @@ namespace BusinessLogic
         Female,
         Other 
     }
-    public enum PaymentType
-    {
-        Insurance = 0,
-        OHIP,
-        Other
-    }
     public enum MedicalConditions
     {
         None=0,
@@ -40,30 +34,19 @@ namespace BusinessLogic
         public string creditCard;
         private string gender;
         private string time;
+        private string medicalCondition;
+        private bool ctXray;
+        private string treatment;
 
         public int Age { get => age; set => age = value; }
         public string CreditCard { get => creditCard; set => creditCard =value;}
         public string ContactNumber { get => contactNumber; set => contactNumber = value; }
         public string Gender { get => gender; set => gender = value; }
         public string Time { get => time; set => time = value; }
-
-
-
-
+        public string MedicalCondition { get => medicalCondition; set => medicalCondition = value; }
+        public bool CtXray { get => ctXray; set => ctXray = value; }
+        public string Treatment { get => treatment; set => treatment = value; }
 
         public abstract string CleanTeeth();
-        
-        public static string ConcealCreditCard(string creditCard)
-        {
-            string concealedCard = string.Empty;
-            char[] charArr = creditCard.ToCharArray();
-            for (int i = 4; i < 12; i++)
-            {
-                charArr[i] = 'X';
-                concealedCard = new string(charArr);
-            }
-            return concealedCard;
-        }
-
     }
 }
