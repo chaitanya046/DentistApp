@@ -26,9 +26,13 @@ namespace DentistApp
         private string treatment = String.Empty;
         private string creditCard = String.Empty;
         Appointment[] appointmentArray = new Appointment[9];
-        private ObservableCollection<string> timeList { get; set; } = null;
+        
         AppointmentList saveList = new AppointmentList();
         public ObservableCollection<Patient> Applist { get; set; } = null;
+        private ObservableCollection<string> TimeList { get; set; } = null;
+        private ObservableCollection<string> GenderList { get; set; } = null;
+        private ObservableCollection<string> MedList { get; set; } = null;
+        private ObservableCollection<string> TreatmentList { get; set; } = null;
         public MyPatient APatient { get; set; } = new MyPatient();
 
         public MainWindow()
@@ -37,7 +41,10 @@ namespace DentistApp
 
             InitializeComponent();
             Applist = new ObservableCollection<Patient>();
-            timeList = new ObservableCollection<string>();
+            TimeList = new ObservableCollection<string>();
+            GenderList = new ObservableCollection<string>();
+            MedList= new ObservableCollection<string>();
+            TreatmentList= new ObservableCollection<string>();
             DataContext = this;
             //Populating Appointment Combobox
             DateTime theTime = DateTime.Now;
@@ -48,27 +55,33 @@ namespace DentistApp
                 string timeofAppointment = initTime.ToString("HH:mm tt");
                 appointmentArray[i].Time = timeofAppointment;
                 initTime = initTime.AddHours(1);
-                timeList.Add(timeofAppointment);
+                TimeList.Add(timeofAppointment);
             }
-            appointmentCombo.ItemsSource = timeList;
-
+            appointmentCombo.ItemsSource = TimeList;
+            
+            //Populating Treatment Combobox
             string[] treatments = Enum.GetNames(typeof(TreatmentType));
             foreach (string name in treatments)
             {
-                treatmentCombo.Items.Add(name);
+                TreatmentList.Add(name);
             }
+            treatmentCombo.ItemsSource = TreatmentList;
+
             //Populating Gender Combobox
             string[] gender = Enum.GetNames(typeof(GenderType));
             foreach (string name in gender)
             {
-                genderCombo.Items.Add(name);
+                GenderList.Add(name);
             }
-            //Populating Gender Combobox
+            genderCombo.ItemsSource = GenderList;
+
+            //Populating medical Combobox
             string[] medic = Enum.GetNames(typeof(MedicalConditions));
             foreach (string name in medic)
             {
-                medCombo.Items.Add(name);
+                MedList.Add(name);
             }
+            medCombo.ItemsSource = MedList;
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
@@ -88,7 +101,8 @@ namespace DentistApp
             }
             else
             {
-                MessageBox.Show("Wrong Input OR Slot Already taken");
+                genralError.Foreground = Brushes.Red;
+                genralError.Content = "Error Registering Customer";
             }
 
 
@@ -159,14 +173,46 @@ namespace DentistApp
             //creditCard
             bool creditFlag = true;
             string creditCardRaw = creditBox.Text.Trim();
+            creditBox.Foreground = Brushes.Black;
             if (creditCardRaw.Length == 16)
             {
                 creditCard = ConcealCreditCard(creditCardRaw);
+                creditBox.Foreground = Brushes.Black;
             }
             else
             {
                 creditBox.Foreground = Brushes.Red;
                 creditFlag = false;
+            }
+
+            if (!ageFlag)
+            {
+                ageError.Foreground = Brushes.Red;
+                ageError.Content = "Enter a valid Age";
+            }
+            else if(!genderFlag){
+                genderError.Foreground = Brushes.Red;
+                genderError.Content = "Enter a valid Gender";
+            }
+            else if (!medFlag)
+            {
+                medError.Foreground = Brushes.Red;
+                medError.Content = "Enter a valid Medical Condition";
+            }
+            else if (!ctFlag)
+            {
+                ctError.Foreground = Brushes.Red;
+                ctError.Content = "Enter a valid requirement";
+            }
+            else if (!treatFlag)
+            {
+                treatmentError.Foreground = Brushes.Red;
+                treatmentError.Content = "Enter a valid Treatment";
+            }
+            else if (!creditFlag)
+            {
+                creditError.Foreground = Brushes.Red;
+                creditError.Content = "Enter a valid Credit Card";
             }
             return ageFlag && genderFlag && medFlag && ctFlag && treatFlag && creditFlag;
         }
@@ -197,7 +243,15 @@ namespace DentistApp
             creditBox.Text = "";
             radioNo.IsChecked = false;
             radioYes.IsChecked = false;
-            
+            appointmentError.Content = "";
+            ageError.Content = "";
+            medError.Content = "";
+            treatmentError.Content = "";
+            creditError.Content = "";
+            appointmentError.Content = "";
+            genderError.Content = "";
+            genralError.Content = "";
+            ctError.Content = "";
             return patient;
         }
 
@@ -250,7 +304,7 @@ namespace DentistApp
             //    saveList.Add(patient);
             //}
             WriteToXML(saveList);
-            timeList.RemoveAt(slot);
+            TimeList.RemoveAt(slot);
             MessageBox.Show("Save Successful");
             
         }

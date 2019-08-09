@@ -31,7 +31,8 @@
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Appointment Time" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
                 <ComboBox x:Name="appointmentCombo" HorizontalAlignment="Left" Height="23" 
-                          VerticalAlignment="Top" SelectionChanged="AppointmentCombo_SelectionChanged" ItemsSource="{Binding Path=timeList}"  />
+                          VerticalAlignment="Top" SelectionChanged="AppointmentCombo_SelectionChanged" ItemsSource="{Binding Path=TimeList}"  />
+                <Label x:Name="appointmentError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="212" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Age:" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
@@ -44,35 +45,49 @@
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
-
                 </TextBox>
+                <Label x:Name="ageError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="224" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Gender: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <ComboBox x:Name="genderCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top"  />
+                <ComboBox x:Name="genderCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" ItemsSource="{Binding Path=GenderList}" />
+                <Label x:Name="genderError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="200" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Medical Conditions: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <ComboBox x:Name="medCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top"  />
+                <ComboBox x:Name="medCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" ItemsSource="{Binding Path=MedList}"  />
+                <Label x:Name="medError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="196" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35">
                 <Label Content="CT-XRAY: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
                 <RadioButton x:Name="radioYes" Content="Yes" Margin="30,10,0,0"/>
                 <RadioButton x:Name="radioNo" Content="No" Margin="10,10,0,0"/>
+                <Label x:Name="ctError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="255" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Treatment: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" />
+                <ComboBox x:Name="treatmentCombo" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" ItemsSource="{Binding Path=TreatmentList}" />
+                <Label x:Name="treatmentError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="202" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label x:Name="creditLabel" Content="Credit Card" HorizontalAlignment="Left"  VerticalAlignment="Top" />
-                <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" />
+                <TextBox x:Name="creditBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" ToolTip="{Binding ElementName=ageBox, Path=(Validation.Errors)[0].ErrorContent}">
+                    <TextBox.Text>
+                        <Binding Path="APatient.CreditCard">
+                            <Binding.ValidationRules>
+                                <local:CreditRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                
+                </TextBox>
+                <Label x:Name="creditError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="244" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,15,0,5">
+            <StackPanel Orientation="Horizontal" Margin="20,15,0,5">
                 <Button x:Name="btnRegister" Content="Register" Width="100" HorizontalAlignment="Left" Margin="0,5,0,5" Click="BtnRegister_Click" />
                 <Button x:Name="btnDisplay" Content="Display" Width="100" HorizontalAlignment="Left" Margin="10,5,0,5" Click="BtnDisplay_Click" />
                 <Button x:Name="btnSave" Content="Save" Width="100" HorizontalAlignment="Left" Margin="15,5,0,5" Click="BtnSave_Click" />
-
+                <Label x:Name="genralError" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="246" />
             </StackPanel>
             <Label x:Name="errorLabel" Content="" Width="Auto"/>
         </StackPanel>
