@@ -83,7 +83,6 @@ namespace DentistApp
             }
             medCombo.ItemsSource = MedList;
         }
-
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
            
@@ -118,9 +117,14 @@ namespace DentistApp
             MyGrid.ItemsSource = Applist;
            
         }
-
         private bool ValidateValues()
         {
+            //
+            bool appointmentFlag = true;
+            if (appointmentCombo.SelectedIndex == -1)
+            {
+                appointmentFlag = false;
+            }
             //Age
             bool ageFlag = true;
             string ageString = string.Empty;
@@ -220,14 +224,17 @@ namespace DentistApp
                 creditError.Foreground = Brushes.Red;
                 creditError.Content = "Enter a valid Credit Card";
             }
-            return ageFlag && genderFlag && medFlag && ctFlag && treatFlag && creditFlag;
+            else if (!appointmentFlag)
+            {
+                appointmentError.Foreground = Brushes.Red;
+                appointmentError.Content = "Enter a Valid Appointment";
+            }
+            return ageFlag && genderFlag && medFlag && ctFlag && treatFlag && creditFlag && appointmentFlag;
         }
-
         private void AppointmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.slot = appointmentCombo.SelectedIndex;
         }
-
         private Patient CreateNewPatient()
         {
           Patient patient  = null;
@@ -260,7 +267,6 @@ namespace DentistApp
             ctError.Content = "";
             return patient;
         }
-
         private void BtnDisplay_Click(object sender, RoutedEventArgs e)
         {
             saveList.Clear();
@@ -301,7 +307,6 @@ namespace DentistApp
 
 
         }
-
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             //saveList.Clear();
@@ -314,7 +319,6 @@ namespace DentistApp
             MessageBox.Show("Save Successful");
             
         }
-
         private string ConcealCreditCard(string creditCard)
         {
             string concealedCard = string.Empty;
@@ -326,7 +330,6 @@ namespace DentistApp
             }
             return concealedCard;
         }
-
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
             if (txtSearch.Text.ToString().Length >0 )
