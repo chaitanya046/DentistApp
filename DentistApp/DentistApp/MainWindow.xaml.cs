@@ -82,42 +82,41 @@ namespace DentistApp
                 MedList.Add(name);
             }
             medCombo.ItemsSource = MedList;
+            btnDisplay.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         }
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-           
-            bool flag = ValidateValues();
-            if (slot <= appointmentArray.Length && flag == true)
-            {
-                if (appointmentArray[slot].Patient == null)
+                bool flag = ValidateValues();
+                if (slot <= appointmentArray.Length && flag == true)
                 {
-                    appointmentError.Content = "";
-                    appointmentArray[slot].Patient = CreateNewPatient();
-                    appointmentArray[slot].Patient.Time = appointmentCombo.SelectedValue.ToString();
-                    appointmentArray[slot].Time = appointmentCombo.SelectedValue.ToString();
-                    saveList.Add(appointmentArray[slot]);
-                    saveList.Sort();
-                   
+                    if (appointmentArray[slot].Patient == null)
+                    {
+                        appointmentError.Content = "";
+                        appointmentArray[slot].Patient = CreateNewPatient();
+                        appointmentArray[slot].Patient.Time = appointmentCombo.SelectedValue.ToString();
+                        appointmentArray[slot].Time = appointmentCombo.SelectedValue.ToString();
+                        saveList.Add(appointmentArray[slot]);
+                        saveList.Sort();
+
+                    }
+                    else if (appointmentArray[slot].Patient != null)
+                    {
+                        appointmentError.Foreground = Brushes.Red;
+                        appointmentError.Content = "Slot Aready Taken";
+                    }
                 }
-                else if(appointmentArray[slot].Patient != null)
+                else
                 {
-                    appointmentError.Foreground = Brushes.Red;
-                    appointmentError.Content = "Slot Aready Taken";
+                    genralError.Foreground = Brushes.Red;
+                    genralError.Content = "Error Registering Customer";
                 }
-            }
-            else
-            {
-                genralError.Foreground = Brushes.Red;
-                genralError.Content = "Error Registering Customer";
-            }
 
-
-            if (appointmentArray[slot].Patient != null)
-            {
-                Applist.Add(appointmentArray[slot].Patient);
-            }
-            MyGrid.ItemsSource = Applist;
-           
+                if (appointmentArray[slot].Patient != null )
+                {
+                    Applist.Add(appointmentArray[slot].Patient);
+                }
+                MyGrid.ItemsSource = Applist;
+                TimeList.RemoveAt(slot);
         }
         private bool ValidateValues()
         {
@@ -185,6 +184,15 @@ namespace DentistApp
             bool creditFlag = true;
             string creditCardRaw = creditBox.Text.Trim();
             creditBox.Foreground = Brushes.Black;
+            char[] creditArray = creditCardRaw.ToCharArray();
+
+            for (int i = 0; i< creditArray.Length; i++)
+            {
+                if (!(Char.IsDigit(creditArray[i])))
+                {
+                    creditFlag = false;
+                }
+            }
             if (creditCardRaw.Length == 16)
             {
                 creditCard = ConcealCreditCard(creditCardRaw);
@@ -285,11 +293,8 @@ namespace DentistApp
                 newPatient.CtXray = patient.CtXray;
                 newPatient.Treatment = patient.Treatment;
                 newPatient.CreditCard = patient.CreditCard;
-                //string[] arrStr = patient.GetType().ToString().Split('.');
-                //string fullType = arrStr[arrStr.Length - 1];
-                //newPatient.Type = fullType.Substring(0, fullType.Length - 4);
                 Applist.Add(newPatient);
-                
+                TimeList.Remove(patient.Time);
             }
             MyGrid.ItemsSource = Applist;
         }
@@ -312,15 +317,8 @@ namespace DentistApp
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //saveList.Clear();
-            //foreach (Appointment apt in appointmentList)
-            //{
-            //    saveList.Add(patient);
-            //}
             WriteToXML(saveList);
-            TimeList.RemoveAt(slot);
             MessageBox.Show("Save Successful");
-            
         }
         private string ConcealCreditCard(string creditCard)
         {
