@@ -117,6 +117,7 @@ namespace DentistApp
                 }
                 MyGrid.ItemsSource = Applist;
                 TimeList.RemoveAt(slot);
+            //TimeList.Remove(appointmentCombo.SelectedValue.ToString());
         }
         private bool ValidateValues()
         {
@@ -309,11 +310,12 @@ namespace DentistApp
         private void ReadFromXML()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(AppointmentList));
-            TextReader tr = new StreamReader("appointments.xml");
-            saveList = (AppointmentList)serializer.Deserialize(tr);
-            tr.Close();
-
-
+            if (File.Exists("appointments.xml"))
+            {
+                TextReader tr = new StreamReader("appointments.xml");
+                saveList = (AppointmentList)serializer.Deserialize(tr);
+                tr.Close();
+            }
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
