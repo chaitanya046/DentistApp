@@ -92,11 +92,16 @@ namespace DentistApp
             {
                 if (appointmentArray[slot].Patient == null)
                 {
-                    
+                    appointmentError.Content = "";
                     appointmentArray[slot].Patient = CreateNewPatient();
                     appointmentArray[slot].Patient.Time = appointmentCombo.SelectedValue.ToString();
                     appointmentArray[slot].Time = appointmentCombo.SelectedValue.ToString();
                     saveList.Add(appointmentArray[slot]);
+                }
+                else if(appointmentArray[slot].Patient != null)
+                {
+                    appointmentError.Foreground = Brushes.Red;
+                    appointmentError.Content = "Slot Aready Taken";
                 }
             }
             else
@@ -185,6 +190,7 @@ namespace DentistApp
                 creditFlag = false;
             }
 
+            //Error Messages
             if (!ageFlag)
             {
                 ageError.Foreground = Brushes.Red;
@@ -323,10 +329,19 @@ namespace DentistApp
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            var query = from Appointment in Applist
-                        where Appointment.Age == int.Parse(txtSearch.Text)
-                        select Appointment;
-            MyGrid.ItemsSource = query;
+            if (txtSearch.Text.ToString().Length >0 )
+            {
+                searchError.Content = "";
+                var query = from Appointment in Applist
+                            where Appointment.Age == int.Parse(txtSearch.Text)
+                            select Appointment;
+                MyGrid.ItemsSource = query;
+            }
+            else
+            {
+                searchError.Foreground = Brushes.Red;
+                searchError.Content = "Search Field Empty";
+            }
         }
 
     }
