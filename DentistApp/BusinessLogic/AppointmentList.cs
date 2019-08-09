@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace BusinessLogic
 {
     [XmlRoot("AppointmentList")]    
-    public class AppointmentList : IEnumerable<Appointment>
+    public class AppointmentList : IEnumerable<Appointment>, IDisposable
     {
         [XmlArray("Appointments")]
 
@@ -39,7 +39,14 @@ namespace BusinessLogic
         {
             appointments.Clear();
         }
-
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+        public void Sort()
+        {
+            appointments.Sort();
+        }
         public IEnumerator<Appointment> GetEnumerator()
         {
             return ((IEnumerable<Appointment>)appointments).GetEnumerator();

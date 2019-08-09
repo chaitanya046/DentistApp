@@ -97,6 +97,8 @@ namespace DentistApp
                     appointmentArray[slot].Patient.Time = appointmentCombo.SelectedValue.ToString();
                     appointmentArray[slot].Time = appointmentCombo.SelectedValue.ToString();
                     saveList.Add(appointmentArray[slot]);
+                    saveList.Sort();
+                   
                 }
                 else if(appointmentArray[slot].Patient != null)
                 {
@@ -281,6 +283,7 @@ namespace DentistApp
                 //string fullType = arrStr[arrStr.Length - 1];
                 //newPatient.Type = fullType.Substring(0, fullType.Length - 4);
                 Applist.Add(newPatient);
+                
             }
             MyGrid.ItemsSource = Applist;
         }

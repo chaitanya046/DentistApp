@@ -15,11 +15,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="DentistApp.CreditCardRule" Collapsed="true">
+  <Class Name="DentistApp.CreditRule" Collapsed="true">
     <Position X="8.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CreditCardRule.cs</FileName>
+      <FileName>CreditRule.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.Windows.Controls.ValidationRule" Collapsed="true">

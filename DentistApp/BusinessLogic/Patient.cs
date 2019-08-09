@@ -48,5 +48,7 @@ namespace BusinessLogic
         public string Treatment { get => treatment; set => treatment = value; }
 
         public abstract string CleanTeeth();
+
+       
     }
 }
