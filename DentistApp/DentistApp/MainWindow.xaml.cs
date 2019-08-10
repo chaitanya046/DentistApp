@@ -116,9 +116,10 @@ namespace DentistApp
                 if (appointmentArray[slot].Patient != null )
                 {
                     Applist.Add(appointmentArray[slot].Patient);
-                }
-                MyGrid.ItemsSource = Applist;
                 TimeList.RemoveAt(selectedIndex);
+            }
+                MyGrid.ItemsSource = Applist;
+               
             //TimeList.Remove(appointmentCombo.SelectedValue.ToString());
         }
         private bool ValidateValues()
