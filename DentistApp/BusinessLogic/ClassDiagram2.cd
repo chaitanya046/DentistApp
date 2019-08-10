@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BusinessLogic.Patient" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="BusinessLogic.Patient" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABABAAAAAQQECAAUBAgEEAAAQQAAAAEBAAAAAAAQA=</HashCode>
@@ -8,21 +8,37 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="BusinessLogic.ChildPatient" Collapsed="true">
-    <Position X="4.5" Y="1.75" Width="1.5" />
+  <Class Name="BusinessLogic.ChildPatient">
+    <Position X="0.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>ChildPatient.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DentistApp.AdultPatient" Collapsed="true">
-    <Position X="6.75" Y="1.75" Width="1.5" />
+  <Class Name="DentistApp.AdultPatient">
+    <Position X="2.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>AdultPatient.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="BusinessLogic.IPatient" Collapsed="true">
+  <Class Name="BusinessLogic.Appointment">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACQA=</HashCode>
+      <FileName>Appointment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BusinessLogic.AppointmentList">
+    <Position X="5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAABAACABQBAQAQAAAAAAEAAAAAABAAAA=</HashCode>
+      <FileName>AppointmentList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BusinessLogic.IPatient">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAAAAAACAAUBAAEAAAAAQAAAAABAAAAAAAAA=</HashCode>
@@ -30,21 +46,21 @@
     </TypeIdentifier>
   </Interface>
   <Enum Name="BusinessLogic.TreatmentType">
-    <Position X="6.5" Y="3.25" Width="1.5" />
+    <Position X="7.25" Y="3.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AgAAAAIAAACAgAAAAEAAAAABAAAAAAAACAAAIAAAAAA=</HashCode>
       <FileName>Patient.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="BusinessLogic.GenderType">
-    <Position X="8.25" Y="4.25" Width="1.5" />
+    <Position X="5.25" Y="5.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Patient.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="BusinessLogic.MedicalConditions">
-    <Position X="8.25" Y="2.75" Width="1.5" />
+    <Position X="7.25" Y="5.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAIAAAEAAAA=</HashCode>
       <FileName>Patient.cs</FileName>
