@@ -19,6 +19,7 @@ namespace DentistApp
     public partial class MainWindow:Window
     {
         private int slot = 0;
+        private int selectedIndex = 0;
         private int age = 0;
         private string gender = String.Empty;
         private string medicalCondition = String.Empty;
@@ -26,7 +27,7 @@ namespace DentistApp
         private string treatment = String.Empty;
         private string creditCard = String.Empty;
         Appointment[] appointmentArray = new Appointment[9];
-        
+        ArrayList timelist1 = new ArrayList();
         AppointmentList saveList = new AppointmentList();
         public ObservableCollection<Patient> Applist { get; set; } = null;
         private ObservableCollection<string> TimeList { get; set; } = null;
@@ -56,6 +57,7 @@ namespace DentistApp
                 appointmentArray[i].Time = timeofAppointment;
                 initTime = initTime.AddHours(1);
                 TimeList.Add(timeofAppointment);
+                timelist1.Add(timeofAppointment);
             }
             appointmentCombo.ItemsSource = TimeList;
             
@@ -116,7 +118,7 @@ namespace DentistApp
                     Applist.Add(appointmentArray[slot].Patient);
                 }
                 MyGrid.ItemsSource = Applist;
-                TimeList.RemoveAt(slot);
+                TimeList.RemoveAt(selectedIndex);
             //TimeList.Remove(appointmentCombo.SelectedValue.ToString());
         }
         private bool ValidateValues()
@@ -244,7 +246,13 @@ namespace DentistApp
         }
         private void AppointmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.slot = appointmentCombo.SelectedIndex;
+            selectedIndex = appointmentCombo.SelectedIndex;
+            if (appointmentCombo.SelectedItem != null)
+            {
+string selectedItem = appointmentCombo.SelectedItem.ToString();
+            slot=timelist1.IndexOf(selectedItem);
+            }
+            
         }
         private Patient CreateNewPatient()
         {
